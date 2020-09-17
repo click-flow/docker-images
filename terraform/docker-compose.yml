@@ -6,7 +6,7 @@ services:
       args:
         TERRAFORM_VERSION: 0.13.3
       context: .
-    image: docker.pkg.github.com/click-flow/docker-images/terraform:v0.13.2-alpine
+    image: docker.pkg.github.com/click-flow/docker-images/terraform:v0.13.3-alpine
   terraform-0.14:
     build:
       args:
