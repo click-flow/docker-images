@@ -1,0 +1,6 @@
+version: '3.8'
+
+services:
+  app:
+    image: docker.pkg.github.com/click-flow/docker-images/lambda-hydrator:v1-alpine
+    build: .
