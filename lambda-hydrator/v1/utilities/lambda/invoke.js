@@ -15,7 +15,7 @@ const invoke = ({ functionName, cloudevent }) => {
 	const params = {
 		FunctionName: functionName,
 		InvocationType: 'Event',
-		Payload: JSON.stringify({ cloudevent }),
+		Payload: JSON.stringify(cloudevent),
 	}
 	lambda.invoke(params, (err, data) => {
 		const datetime = new Date().toISOString()
