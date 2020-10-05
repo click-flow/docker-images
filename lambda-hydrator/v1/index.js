@@ -1,7 +1,7 @@
 const { invoke } = require('./utilities/lambda/invoke')
 const { v4: { createEventStream } } = require('@1mill/cloudevents')
 
-const river = createEventStream({
+const waterway = createEventStream({
 	id: process.env.CLOUDEVENTS_ID,
 	mechanism: process.env.CLOUDEVENTS_MECHANISM,
 	password: process.env.CLOUDEVENTS_PASSWORD,
@@ -11,7 +11,7 @@ const river = createEventStream({
 })
 
 const MAP = JSON.parse(process.env.MAP_JSON)
-river.listen({
+waterway.listen({
 	handler: async ({ cloudevent }) => {
 		const functionName = MAP[cloudevent.type]
 		invoke({ cloudevent, functionName })
