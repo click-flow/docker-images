@@ -21,8 +21,8 @@ Inside your docker-compose file
             "some-other-type.0.o": "another-arn"
           }'
           NODE_ENV: development
-          RIVER_CLOUDEVENTS_PROTOCOL: kafka
-          RIVER_CLOUDEVENTS_URLS: river:9092
+          CLOUDEVENTS_PROTOCOL: kafka
+          CLOUDEVENTS_URLS: river:9092
     ```
 
 ## Using localstack for local development
