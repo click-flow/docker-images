@@ -16,9 +16,9 @@ Inside your docker-compose file
           AWS_REGION: us-east-1
           AWS_SECRET_ACCRESS_KEY: my-aws-key
           MAP_JSON: '{
-            "my-first-cloudevent-type.0.o": "my-lambda-function-arn",
-            "even-another-type.0.o": "do-this-thing-aws-arn",
-            "some-other-type.0.o": "another-arn"
+            "my-cloudevent-type": "arn:aws:lambda:us-east-2:123456789012:function:my-function:1",
+  "my-other-cloudevent-type": "arn:aws:lambda:us-east-2:123456789012:function:my-other-function:1",
+  "add-google-authorization-token.0.o": "arn:aws:lambda:us-east-2:123456789012:function:add-authorization:1"
           }'
           NODE_ENV: development
           CLOUDEVENTS_PROTOCOL: kafka
