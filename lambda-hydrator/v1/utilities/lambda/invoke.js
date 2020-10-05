@@ -19,14 +19,13 @@ const invoke = ({ functionName, cloudevent }) => {
 	}
 	lambda.invoke(params, (err, data) => {
 		const datetime = new Date().toISOString()
-		console.log(`
-		---
-		${datetime}
-		${cloudevent}
-		${functionName}
-		${err || data} ${err ? err.stack : null}
-		---
-		`);
+		const res = err || data
+		console.log(
+			datetime,
+			JSON.stringify(cloudevent),
+			functionName,
+			JSON.stringify(res),
+		)
 	})
 }
 
