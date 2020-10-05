@@ -1,16 +1,7 @@
-const AWS = require('aws-sdk')
-const { v3: {
-	createEventStream
-} } = require('@1mill/cloudevents')
+const { invoke } = require('./utilities/lambda/invoke')
+const { v4: { createEventStream } } = require('@1mill/cloudevents')
 
-AWS.config.update({
-	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	region: process.env.AWS_REGION,
-	secretAccessKey: process.env.AWS_SECRET_ACCRESS_KEY,
-})
-const lambda = new AWS.Lambda({ apiVersion: '2015-03-31' })
-
-const rapids = createEventStream({
+const waterway = createEventStream({
 	id: process.env.CLOUDEVENTS_ID,
 	mechanism: process.env.CLOUDEVENTS_MECHANISM,
 	password: process.env.CLOUDEVENTS_PASSWORD,
@@ -19,19 +10,11 @@ const rapids = createEventStream({
 	username: process.env.CLOUDEVENTS_USERNAME,
 })
 
-rapids.listen({
-	handler: ({ cloudevent }) => {
-		const params = {
-			FunctionName: process.env.AWS_LAMBDA_ARN,
-			InvocationType: 'Event',
-			Payload: JSON.stringify({ cloudevent }),
-		}
-		lambda.invoke(params, (err, data) => {
-			const datetime = new Date().toISOString()
-			err
-				? console.error(datetime, err, err.stack)
-				: console.log(datetime, data)
-		})
+const MAP = JSON.parse(process.env.MAP_JSON)
+waterway.listen({
+	handler: async ({ cloudevent }) => {
+		const functionName = MAP[cloudevent.type]
+		invoke({ cloudevent, functionName })
 	},
-	types: (process.env.CLOUDEVENTS_TYPES || '').split(','),
+	types: Object.keys(MAP)
 })
