@@ -3,7 +3,7 @@ const AWS = require('aws-sdk')
 const lambda = new AWS.Lambda({
 	// required
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-	apiVersion: "2015-03-31",
+	apiVersion: '2015-03-31',
 	region: process.env.AWS_REGION,
 	secretAccessKey: process.env.AWS_SECRET_ACCRESS_KEY,
 
