@@ -2,12 +2,12 @@ const { invoke } = require('./utilities/lambda/invoke')
 const { v4: { createEventStream } } = require('@1mill/cloudevents')
 
 const river = createEventStream({
-	id: process.env.RIVER_CLOUDEVENTS_ID,
-	mechanism: process.env.RIVER_CLOUDEVENTS_MECHANISM,
-	password: process.env.RIVER_CLOUDEVENTS_PASSWORD,
-	protocol: process.env.RIVER_CLOUDEVENTS_PROTOCOL,
-	urls: (process.env.RIVER_CLOUDEVENTS_URLS || '').split(','),
-	username: process.env.RIVER_CLOUDEVENTS_USERNAME,
+	id: process.env.CLOUDEVENTS_ID,
+	mechanism: process.env.CLOUDEVENTS_MECHANISM,
+	password: process.env.CLOUDEVENTS_PASSWORD,
+	protocol: process.env.CLOUDEVENTS_PROTOCOL,
+	urls: (process.env.CLOUDEVENTS_URLS || '').split(','),
+	username: process.env.CLOUDEVENTS_USERNAME,
 })
 
 const MAP = JSON.parse(process.env.MAP_JSON)
