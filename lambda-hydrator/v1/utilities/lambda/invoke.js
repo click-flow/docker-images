@@ -5,7 +5,7 @@ const lambda = new AWS.Lambda({
 	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 	apiVersion: '2015-03-31',
 	region: process.env.AWS_REGION,
-	secretAccessKey: process.env.AWS_SECRET_ACCRESS_KEY,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 
 	// optional
 	endpoint: process.env.AWS_ENDPOINT,

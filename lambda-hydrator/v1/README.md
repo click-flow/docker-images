@@ -14,7 +14,7 @@ Inside your docker-compose file
         environment:
           AWS_ACCESS_KEY_ID: my-aws-id
           AWS_REGION: us-east-1
-          AWS_SECRET_ACCRESS_KEY: my-aws-key
+          AWS_SECRET_ACCESS_KEY: my-aws-key
           MAP_JSON: '{
             "my-cloudevent-type": "arn:aws:lambda:us-east-2:123456789012:function:my-function:1",
   "my-other-cloudevent-type": "arn:aws:lambda:us-east-2:123456789012:function:my-other-function:1",
