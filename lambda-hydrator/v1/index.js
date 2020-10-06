@@ -10,7 +10,7 @@ const waterway = createEventStream({
 	username: process.env.CLOUDEVENTS_USERNAME,
 })
 
-const MAP = JSON.parse(process.env.MAP_JSON)
+const MAP = JSON.parse(process.env.MAP_JSON || JSON.stringify({}))
 waterway.listen({
 	handler: async ({ cloudevent }) => {
 		const functionName = MAP[cloudevent.type]
