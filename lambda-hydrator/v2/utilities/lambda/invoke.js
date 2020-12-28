@@ -11,16 +11,16 @@ const lambda = new AWS.Lambda({
 	endpoint: process.env.AWS_ENDPOINT,
 })
 
-const invoke = ({ functionName, cloudevent }) => {
+const invoke = async ({ lambdaArn, cloudevent }) => {
 	const params = {
-		FunctionName: functionName,
+		FunctionName: lambdaArn,
 		InvocationType: 'Event',
 		Payload: JSON.stringify(cloudevent),
 	}
-	lambda.invoke(params, (err, data) => {
+	await lambda.invokeAsync(params, (err, data) => {
 		console.log({
 			datetime: new Date().toISOString(),
-			to: functionName,
+			lambdaArn,
 			cloudevent,
 			response: err || data,
 		})
