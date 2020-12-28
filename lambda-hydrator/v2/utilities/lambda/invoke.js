@@ -17,7 +17,7 @@ const invoke = async ({ lambdaArn, cloudevent }) => {
 		InvocationType: 'Event',
 		Payload: JSON.stringify(cloudevent),
 	}
-	await lambda.invokeAsync(params, (err, data) => {
+	await lambda.invoke(params, (err, data) => {
 		console.log({
 			datetime: new Date().toISOString(),
 			lambdaArn,

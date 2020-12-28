@@ -1,6 +1,5 @@
 const { invoke } = require('./utilities/lambda/invoke')
-const { v4: { createEventStream } } = require('@1mill/cloudevents');
-const { ConfigurationOptions } = require('aws-sdk');
+const { v4: { createEventStream } } = require('@1mill/cloudevents')
 
 const stream = createEventStream({
 	id: process.env.CLOUDEVENTS_ID,
@@ -15,27 +14,10 @@ const MAPS = JSON.parse(process.env.MAPS_JSON || JSON.stringify([]))
 const TYPES = [...new Set(MAPS.map(map => map.cloudeventType))]
 
 const handler = async ({ cloudevent }) => {
-	const res = await Promise.all(
-		MAPS
-		.filter(map => map.cloudeventType === cloudevent.type )
-		.map(map => handler({ lambdaArn: map.lambdaArn, cloudevent }))
-	)
-	console.log(res)
+	const promises = MAPS
+		.filter(item => item.cloudeventType === cloudevent.type)
+		.map(async item => await invoke({ lambdaArn: item.lambdaArn, cloudevent }))
 
-	// const functionName = MAP[cloudevent.type]
-	// await invoke({ cloudevent, functionName })
+	await Promise.allSettled(promises)
 }
-// stream.listen({
-// 	handler,
-// 	types: TYPES,
-// })
-
-console.log(TYPES)
-
-const temp = async () => {
-	const cloudevent = {
-		type: 'aaa'
-	}
-	await handler({ cloudevent })
-}
-temp()
+stream.listen({ handler, types: TYPES })
