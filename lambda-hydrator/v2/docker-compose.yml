@@ -3,6 +3,22 @@ version: '3.8'
 services:
   app:
     build: .
+    environment:
+      AWS_ACCESS_KEY_ID: development
+      AWS_ENDPOINT: development
+      AWS_REGION: us-east-1
+      AWS_SECRET_ACCESS_KEY: development
+      CLOUDEVENTS_ID: development
+      CLOUDEVENTS_PROTOCOL: kafka
+      MAPS_JSON: '[
+        {"cloudeventType": "aaa", "lambdaArn": "111"},
+        {"cloudeventType": "aaa", "lambdaArn": "222"},
+        {"cloudeventType": "aaa", "lambdaArn": "333"},
+        {"cloudeventType": "bbb", "lambdaArn": "333"},
+        {"cloudeventType": "bbb", "lambdaArn": "444"},
+        {"cloudeventType": "ccc", "lambdaArn": "555"}
+      ]'
+      NODE_ENV: development
     image: docker.pkg.github.com/click-flow/docker-images/lambda-hydrator:v2-alpine
     volumes:
       - ./:/app
