@@ -1,4 +1,4 @@
-# ClickFlow lambda-hydrator docker image
+# ClickFlow lambda-hydrator v1 docker image
 
 This image is a platform agnostic API Gateway to invoke AWS lambda functions purpose built to work within the CloudEvents + Rapids, Rivers, and Ponds software architecture in mind.
 
