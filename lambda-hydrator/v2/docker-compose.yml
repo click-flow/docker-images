@@ -5,7 +5,7 @@ services:
     build: .
     environment:
       AWS_ACCESS_KEY_ID: development
-      AWS_ENDPOINT: development
+      AWS_ENDPOINT: localstack:4566
       AWS_REGION: us-east-1
       AWS_SECRET_ACCESS_KEY: development
       CLOUDEVENTS_ID: development
