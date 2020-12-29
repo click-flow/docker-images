@@ -1,4 +1,4 @@
-# ClickFlow lambda-hydrator v1 docker image
+# ClickFlow lambda-hydrator v2 docker image
 
 This image is a platform agnostic API Gateway to invoke AWS lambda functions purpose built to work within the CloudEvents + Rapids, Rivers, and Ponds software architecture in mind.
 
@@ -10,16 +10,19 @@ Inside your docker-compose file
     ...
     services:
       my-lambda-hydrator:
-        image: docker.pkg.github.com/click-flow/docker-images/lambda-hydrator:v1-alpine
+        image: docker.pkg.github.com/click-flow/docker-images/lambda-hydrator:v2-alpine
         environment:
           AWS_ACCESS_KEY_ID: my-aws-id
           AWS_REGION: us-east-1
           AWS_SECRET_ACCESS_KEY: my-aws-key
-          MAP_JSON: '{
-            "my-cloudevent-type": "arn:aws:lambda:us-east-2:123456789012:function:my-function:1",
-  "my-other-cloudevent-type": "arn:aws:lambda:us-east-2:123456789012:function:my-other-function:1",
-  "add-google-authorization-token.0.o": "arn:aws:lambda:us-east-2:123456789012:function:add-authorization:1"
-          }'
+          MAPS_JSON: '[
+            {"cloudeventType": "a-cloud-event.0.o", "lambdaArn": "arn:aws:lambda:us-east-1:1234:function:my-function:1"},
+            {"cloudeventType": "a-cloud-event.0.o", "lambdaArn": "arn:aws:lambda:us-east-1:1234:function:my-function:2"},
+            {"cloudeventType": "a-cloud-event.0.o", "lambdaArn": "arn:aws:lambda:us-east-1:1234:function:my-function:3"},
+            {"cloudeventType": "an-enriched-event.0.e", "lambdaArn": "..."},
+            {"cloudeventType": "another-cloud-event.0.o", "lambdaArn": "..."}
+            {"cloudeventType": "another-cloud-event.0.o", "lambdaArn": "..."},
+          ]'
           NODE_ENV: development
           CLOUDEVENTS_PROTOCOL: kafka
           CLOUDEVENTS_URLS: river:9092

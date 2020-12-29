@@ -1,0 +1,16 @@
+{
+  "name": "@clickflow/lambda-hydrator",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@1mill/cloudevents": "^0.10.4",
+    "aws-sdk": "^2.817.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
