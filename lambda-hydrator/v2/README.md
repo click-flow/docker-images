@@ -15,16 +15,13 @@ Inside your docker-compose file
           AWS_ACCESS_KEY_ID: my-aws-id
           AWS_REGION: us-east-1
           AWS_SECRET_ACCESS_KEY: my-aws-key
-          MAPS_JSON: '{
-            {"M"}
-          }',
           MAPS_JSON: '[
             {"cloudeventType": "a-cloud-event.0.o", "lambdaArn": "arn:aws:lambda:us-east-1:1234:function:my-function:1"},
             {"cloudeventType": "a-cloud-event.0.o", "lambdaArn": "arn:aws:lambda:us-east-1:1234:function:my-function:2"},
             {"cloudeventType": "a-cloud-event.0.o", "lambdaArn": "arn:aws:lambda:us-east-1:1234:function:my-function:3"},
             {"cloudeventType": "an-enriched-event.0.e", "lambdaArn": "..."},
-            {"cloudeventType": "another-cloud-event.0.o", "lambdaArn": "..."},
             {"cloudeventType": "another-cloud-event.0.o", "lambdaArn": "..."}
+            {"cloudeventType": "another-cloud-event.0.o", "lambdaArn": "..."},
           ]'
           NODE_ENV: development
           CLOUDEVENTS_PROTOCOL: kafka
