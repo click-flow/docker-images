@@ -1,4 +1,4 @@
-name: cicd
+name: lambda-hydrator.v1
 
 defaults:
   run:
