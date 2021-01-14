@@ -3,5 +3,5 @@ version: '3'
 services:
   cicd-v1:
     build: .
-    image: docker.pkg.github.com/click-flow/docker-images/cicd:v1-alpine
+    image: ghcr.io/click-flow/docker-images/cicd:v1-alpine
 
