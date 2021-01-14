@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@1mill/cloudevents": "^0.10.4",
-    "aws-sdk": "^2.773.0"
+    "@1mill/cloudevents": "^0.10.6",
+    "aws-sdk": "^2.828.0"
   }
 }
