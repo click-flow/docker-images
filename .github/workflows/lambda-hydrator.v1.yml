@@ -3,7 +3,7 @@ name: cicd
 defaults:
   run:
     shell: bash
-    working-directory: ./cicd
+    working-directory: ./lambda-hydrator/v1
 
 jobs:
   publish:
@@ -27,4 +27,4 @@ on:
     branches:
       - master
     paths:
-      - 'cicd/**'
+      - 'lambda-hydrator/v1/**'

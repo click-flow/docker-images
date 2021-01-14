@@ -1,9 +1,9 @@
-name: cicd
+name: terraform
 
 defaults:
   run:
     shell: bash
-    working-directory: ./cicd
+    working-directory: ./terraform
 
 jobs:
   publish:
@@ -27,4 +27,4 @@ on:
     branches:
       - master
     paths:
-      - 'cicd/**'
+      - 'terraform/**'

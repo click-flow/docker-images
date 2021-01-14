@@ -1,9 +1,9 @@
-name: cicd
+name: lambda-hydrator.v2
 
 defaults:
   run:
     shell: bash
-    working-directory: ./cicd
+    working-directory: ./lambda-hydrator/v2
 
 jobs:
   publish:
@@ -27,4 +27,4 @@ on:
     branches:
       - master
     paths:
-      - 'cicd/**'
+      - 'lambda-hydrator/v2/**'
