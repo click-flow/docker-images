@@ -1,0 +1,32 @@
+name: lambda-hydrator.v1
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./lambda-hydrator/v1
+
+jobs:
+  publish:
+    if: endsWith(github.ref, 'master') == true
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+      - name: Grant access to run files
+        run: find . -type f  -name "docker-compose.yml" -exec chmod +x '{}' +
+      - name: Log into GitHub Docker registry
+        run: echo ${{ github.token }} | docker login --username ${{ github.actor }} --password-stdin https://docker.pkg.github.com
+      - name: Build
+        run: docker-compose build --no-cache
+      - name: Publish
+        run: docker-compose push
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'lambda-hydrator/v1/**'
