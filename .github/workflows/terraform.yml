@@ -17,6 +17,8 @@ jobs:
           ref: ${{ github.ref }}
       - name: Grant access to run files
         run: find . -type f  -name "docker-compose.yml" -exec chmod +x '{}' +
+      - name: Log into GitHub Docker registry
+        run: echo ${{ github.token }} | docker login --username ${{ github.actor }} --password-stdin https://docker.pkg.github.com
       - name: Build
         run: docker-compose build --no-cache
       - name: Publish
