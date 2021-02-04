@@ -12,8 +12,11 @@ services:
       CLOUDEVENTS_PROTOCOL: kafka
       MAPS_JSON: '[
         {"cloudeventType": "aaa", "lambdaArn": "111"},
+        {"cloudeventType": "aaa", "lambdaArn": "111"},
+        {"cloudeventType": "aaa", "lambdaArn": "111"},
         {"cloudeventType": "aaa", "lambdaArn": "222"},
         {"cloudeventType": "aaa", "lambdaArn": "333"},
+        {"cloudeventType": "bbb", "lambdaArn": "333"},
         {"cloudeventType": "bbb", "lambdaArn": "333"},
         {"cloudeventType": "bbb", "lambdaArn": "444"},
         {"cloudeventType": "ccc", "lambdaArn": "555"}
