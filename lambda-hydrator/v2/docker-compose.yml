@@ -23,3 +23,7 @@ services:
       ]'
       NODE_ENV: development
     image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2-alpine
+
+  version:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.1-alpine
