@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  app:
+  major:
     build: .
     environment:
       AWS_ACCESS_KEY_ID: development
@@ -23,7 +23,13 @@ services:
       ]'
       NODE_ENV: development
     image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2-alpine
+    # volumes:
+    #   - ./:/app
 
-  version:
+  minor:
     build: .
-    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.1-alpine
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0-alpine
+
+  patch:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.2-alpine
