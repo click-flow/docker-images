@@ -11,7 +11,7 @@ const lambda = new AWS.Lambda({
 	endpoint: process.env.AWS_ENDPOINT,
 })
 
-const invoke = async ({ cloudevent, lambdaArn }) => {
+const invoke = ({ cloudevent, lambdaArn }) => {
 	const params = {
 		FunctionName: lambdaArn,
 		InvocationType: 'RequestResponse',
@@ -19,21 +19,18 @@ const invoke = async ({ cloudevent, lambdaArn }) => {
 	}
 
 	let status = null
-	try {
-		const res = await lambda.invoke(params).promise()
-		status = res.StatusCode
-	} catch (err) {
-		status = err.statusCode
-	}
-	console.log(JSON.stringify({
-		status: `${status}`,
-		datetime: new Date().toISOString(),
-		lambdaArn,
-		cloudevent: {
-			...cloudevent,
-			data: 'hidden-by-lambda-hydrator',
-		},
-	}))
+	lambda.invoke(params).promise()
+		.then(res => status = res.StatusCode)
+		.catch(err => status = err.statusCode)
+		.finally(() => {
+			const log = {
+				status: `${status}`,
+				datetime: new Date().toISOString(),
+				lambdaArn,
+				cloudevent: { ...cloudevent, data: '__hidden__' },
+			}
+			console.log(JSON.stringify(log))
+		})
 }
 
 module.exports = { invoke }

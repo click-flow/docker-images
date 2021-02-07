@@ -34,7 +34,7 @@ services:
 
   patch:
     build: .
-    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.3-alpine
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.4-alpine
 
 networks:
   default:
