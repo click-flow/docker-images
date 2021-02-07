@@ -14,7 +14,7 @@ const lambda = new AWS.Lambda({
 const invoke = async ({ cloudevent, lambdaArn }) => {
 	const params = {
 		FunctionName: lambdaArn,
-		InvocationType: 'Event',
+		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify(cloudevent),
 	}
 
