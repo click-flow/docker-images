@@ -51,3 +51,9 @@ If you are using localstack to creat your functions locally on your computer, yo
         AWS_ENDPOINT: localstack:4566 # Connect to localstack
         NODE_TLS_REJECT_UNAUTHORIZED: 0 # Allow un-verified SSL connection
     ```
+
+## Troubling shooting
+
+Q: *Why is my lambda being invoked multiple times in a production environment?*
+A: This lambda-hydrator invokes lambdas asynchronous via `InvocationType: Event` which publishes our lambda-cloudevents to an AWS internal queing system.
+Which can sometimes cause the same lambda-cloudevent to be process multiple times (<https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html>).
