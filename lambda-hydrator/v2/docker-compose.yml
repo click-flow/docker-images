@@ -5,11 +5,12 @@ services:
     build: .
     environment:
       AWS_ACCESS_KEY_ID: development
-      AWS_ENDPOINT: my-local-localstack:4566
+      AWS_ENDPOINT: aws:4566
       AWS_REGION: us-east-1
       AWS_SECRET_ACCESS_KEY: development
       CLOUDEVENTS_ID: development
       CLOUDEVENTS_PROTOCOL: kafka
+      CLOUDEVENTS_URLS: rapids:9092
       MAPS_JSON: '[
         {"cloudeventType": "aaa", "lambdaArn": "111"},
         {"cloudeventType": "aaa", "lambdaArn": "111"},
@@ -22,6 +23,7 @@ services:
         {"cloudeventType": "ccc", "lambdaArn": "555"}
       ]'
       NODE_ENV: development
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
     image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2-alpine
     # volumes:
     #   - ./:/app
@@ -32,4 +34,9 @@ services:
 
   patch:
     build: .
-    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.2-alpine
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v2.0.3-alpine
+
+networks:
+  default:
+    external:
+      name: services-network
