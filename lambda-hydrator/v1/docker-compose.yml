@@ -1,8 +1,16 @@
 version: '3.8'
 
 services:
-  app:
+  major:
     build: .
     image: ghcr.io/click-flow/docker-images/lambda-hydrator:v1-alpine
     volumes:
       - ./:/app
+
+  minor:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v1.0-alpine
+
+  patch:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v1.0.1-alpine
