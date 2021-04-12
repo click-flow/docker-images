@@ -11,9 +11,9 @@ const lambda = new AWS.Lambda({
 	endpoint: process.env.AWS_ENDPOINT,
 })
 
-const invokeLambda = ({ cloudevent, arn }) => {
+const invokeLambda = ({ arn, cloudevent }) => {
 	const params = {
-		FunctionName: lambdaArn,
+		FunctionName: arn,
 		InvocationType: 'RequestResponse',
 		Payload: JSON.stringify(cloudevent),
 	}
@@ -23,9 +23,9 @@ const invokeLambda = ({ cloudevent, arn }) => {
 		.catch(err => status = err.statusCode)
 		.finally(() => {
 			const log = {
-				datetime: new Date().toISOString(),
-				cloudevent: { ...cloudevent, data: '__hidden__' },
 				arn,
+				cloudevent: { ...cloudevent, data: '__hidden__' },
+				datetime: new Date().toISOString(),
 				status: `${status}`,
 			}
 			console.log(JSON.stringify(log))
