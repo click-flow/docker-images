@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  major:
+    build: .
+    environment:
+      ARN_AND_TYPE_MAPS_JSON: '[
+        { "arn": "111", "type": "aaa" },
+        { "arn": "111", "type": "aaa" },
+        { "arn": "111", "type": "aaa" },
+        { "arn": "222", "type": "aaa" },
+        { "arn": "333", "type": "aaa" },
+        { "arn": "333", "type": "bbb" },
+        { "arn": "333", "type": "bbb" },
+        { "arn": "444", "type": "bbb" },
+        { "arn": "555", "type": "ccc" }
+      ]'
+      AWS_ACCESS_KEY_ID: development
+      AWS_ENDPOINT: aws:4566
+      AWS_REGION: us-east-1
+      AWS_SECRET_ACCESS_KEY: development
+      CLOUDEVENT_STREAM_ID: development
+      CLOUDEVENT_STREAM_PROTOCOL: kafka
+      CLOUDEVENT_STREAM_URLS: rapids:9092
+      NODE_ENV: development
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3-alpine
+    volumes:
+      - ./:/app
+
+  minor:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3.0-alpine
+
+  patch:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3.0.0-alpine
+
+networks:
+  default:
+    external:
+      name: services-network
