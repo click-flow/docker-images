@@ -12,15 +12,15 @@ services:
       CLOUDEVENT_STREAM_PROTOCOL: kafka
       CLOUDEVENT_STREAM_URLS: rapids:9092
       MAPS_JSON: '[
-        {"type": "aaa", "arn": "111"},
-        {"type": "aaa", "arn": "111"},
-        {"type": "aaa", "arn": "111"},
-        {"type": "aaa", "arn": "222"},
-        {"type": "aaa", "arn": "333"},
-        {"type": "bbb", "arn": "333"},
-        {"type": "bbb", "arn": "333"},
-        {"type": "bbb", "arn": "444"},
-        {"type": "ccc", "arn": "555"}
+        { "arn": "111", "type": "aaa" },
+        { "arn": "111", "type": "aaa" },
+        { "arn": "111", "type": "aaa" },
+        { "arn": "222", "type": "aaa" },
+        { "arn": "333", "type": "aaa" },
+        { "arn": "333", "type": "bbb" },
+        { "arn": "333", "type": "bbb" },
+        { "arn": "444", "type": "bbb" },
+        { "arn": "555", "type": "ccc" }
       ]'
       NODE_ENV: development
       NODE_TLS_REJECT_UNAUTHORIZED: 0
