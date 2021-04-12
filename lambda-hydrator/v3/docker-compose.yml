@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  major:
+    build: .
+    environment:
+      AWS_ACCESS_KEY_ID: development
+      AWS_ENDPOINT: aws:4566
+      AWS_REGION: us-east-1
+      AWS_SECRET_ACCESS_KEY: development
+      CLOUDEVENT_STREAM_ID: development
+      CLOUDEVENT_STREAM_PROTOCOL: kafka
+      CLOUDEVENT_STREAM_URLS: rapids:9092
+      MAPS_JSON: '[
+        {"cloudeventType": "aaa", "lambdaArn": "111"},
+        {"cloudeventType": "aaa", "lambdaArn": "111"},
+        {"cloudeventType": "aaa", "lambdaArn": "111"},
+        {"cloudeventType": "aaa", "lambdaArn": "222"},
+        {"cloudeventType": "aaa", "lambdaArn": "333"},
+        {"cloudeventType": "bbb", "lambdaArn": "333"},
+        {"cloudeventType": "bbb", "lambdaArn": "333"},
+        {"cloudeventType": "bbb", "lambdaArn": "444"},
+        {"cloudeventType": "ccc", "lambdaArn": "555"}
+      ]'
+      NODE_ENV: development
+      NODE_TLS_REJECT_UNAUTHORIZED: 0
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3-alpine
+    volumes:
+      - ./:/app
+
+  minor:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3.0-alpine
+
+  patch:
+    build: .
+    image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3.0.0-alpine
+
+networks:
+  default:
+    external:
+      name: services-network
