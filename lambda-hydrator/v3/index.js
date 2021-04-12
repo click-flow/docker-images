@@ -1,3 +1,4 @@
+const { handler } = require('./utilities/handler')
 const { v5: { createCloudeventStream } } = require('@1mill/cloudevents');
 
 // * Remove duplicate maps so we don't produce duplicate cloudevents via duplicate
@@ -11,3 +12,7 @@ const maps = [
 // * Find unique cloudevent types that we should listen for on the cloudevent stream.
 const types = [...new Set(maps.map(m => m.type))]
 
+createCloudeventStream({}).listen({
+	handler: ({ cloudevent }) => handler({ cloudevent, maps }),
+	types,
+})
