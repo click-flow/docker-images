@@ -4,14 +4,7 @@ services:
   major:
     build: .
     environment:
-      AWS_ACCESS_KEY_ID: development
-      AWS_ENDPOINT: aws:4566
-      AWS_REGION: us-east-1
-      AWS_SECRET_ACCESS_KEY: development
-      CLOUDEVENT_STREAM_ID: development
-      CLOUDEVENT_STREAM_PROTOCOL: kafka
-      CLOUDEVENT_STREAM_URLS: rapids:9092
-      MAPS_JSON: '[
+      ARN_AND_TYPE_MAPS_JSON: '[
         { "arn": "111", "type": "aaa" },
         { "arn": "111", "type": "aaa" },
         { "arn": "111", "type": "aaa" },
@@ -22,6 +15,13 @@ services:
         { "arn": "444", "type": "bbb" },
         { "arn": "555", "type": "ccc" }
       ]'
+      AWS_ACCESS_KEY_ID: development
+      AWS_ENDPOINT: aws:4566
+      AWS_REGION: us-east-1
+      AWS_SECRET_ACCESS_KEY: development
+      CLOUDEVENT_STREAM_ID: development
+      CLOUDEVENT_STREAM_PROTOCOL: kafka
+      CLOUDEVENT_STREAM_URLS: rapids:9092
       NODE_ENV: development
       NODE_TLS_REJECT_UNAUTHORIZED: 0
     image: ghcr.io/click-flow/docker-images/lambda-hydrator:v3-alpine
