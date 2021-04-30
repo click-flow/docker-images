@@ -4,19 +4,19 @@ services:
   terraform-0.13:
     build:
       args:
-        TERRAFORM_VERSION: 0.13.6
+        TERRAFORM_VERSION: 0.13.7
       context: .
     image: ghcr.io/click-flow/docker-images/terraform:v0.13-alpine
   terraform-0.14:
     build:
       args:
-        TERRAFORM_VERSION: 0.14.10
+        TERRAFORM_VERSION: 0.14.11
       context: .
     image: ghcr.io/click-flow/docker-images/terraform:v0.14-alpine
   terraform-0.15:
     build:
       args:
-        TERRAFORM_VERSION: 0.15.0
+        TERRAFORM_VERSION: 0.15.1
       context: .
     image: ghcr.io/click-flow/docker-images/terraform:v0.15-alpine
 
