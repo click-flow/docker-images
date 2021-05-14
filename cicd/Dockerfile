@@ -5,8 +5,8 @@ RUN apk update && apk add \
 	'docker>=20' \
 	'git~=2'
 
-RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community \
-	'docker-compose>=1.26.2-r0'
+RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/v3.13/community \
+	'docker-compose>=1.26.2'
 
 WORKDIR /app
 
